@@ -1,3 +1,4 @@
+/* Estilo general de la página */
 body {
   font-family: Arial, sans-serif;
   background-color: #eef6fb;
@@ -5,68 +6,84 @@ body {
   padding: 0;
 }
 
+/* Encabezado principal (título + autor) */
 header {
-  background-color: #007acc;
-  color: white;
-  text-align: center;
-  padding: 1.5rem;
-  border-bottom: 5px solid #005fa3;
+  display: none; /* Lo movemos visualmente dentro del contenedor principal */
 }
 
-main {
-  display: flex;
-  justify-content: center;
-  margin-top: 2rem;
-}
-
-section {
+/* Contenedor unificado con bordes redondeados */
+#contenedor-principal {
   background-color: white;
   padding: 2rem;
-  border-radius: 15px;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
   width: 90%;
-  max-width: 500px;
   text-align: center;
+  margin: 3rem auto;
 }
 
-h1, h2, h3 {
+/* Títulos */
+#contenedor-principal h1 {
+  font-size: 1.8rem;
+  color: #007acc;
+  margin-bottom: 0.5rem;
+}
+
+#contenedor-principal p {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 2rem;
+}
+
+#contenedor-principal h2 {
   margin-bottom: 1rem;
+  font-size: 1.3rem;
+  color: #333;
 }
 
+/* Select y inputs */
 select, input {
   padding: 0.6rem;
-  margin: 0.5rem 0;
+  margin: 0.5rem 0 1rem;
   width: 90%;
-  border-radius: 10px;
+  border-radius: 12px;
   border: 1px solid #ccc;
   box-sizing: border-box;
+  font-size: 1rem;
 }
 
+/* Botón */
 button {
   margin-top: 1rem;
   padding: 0.6rem 1.5rem;
   background-color: #007acc;
   color: white;
   border: none;
-  border-radius: 10px;
+  border-radius: 12px;
   cursor: pointer;
   font-size: 1rem;
+  transition: background-color 0.3s ease;
 }
 
 button:hover {
   background-color: #005fa3;
 }
 
+/* Etiquetas */
 label {
   display: block;
   text-align: left;
   margin-top: 1rem;
   font-weight: bold;
+  color: #333;
 }
 
+/* Resultado */
 #resultado {
-  margin-top: 1rem;
+  margin-top: 1.5rem;
   font-size: 1.2rem;
-  color: #333;
+  color: #007acc;
   font-weight: bold;
 }
+
