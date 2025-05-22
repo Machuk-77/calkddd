@@ -12,7 +12,7 @@
   </header>
 
   <main>
-    <section>
+    <section id="contenedor-principal">
       <h2>Seleccione qué magnitud física desea calcular</h2>
       <select id="selectorMagnitud" onchange="mostrarFormulario()">
         <option value="">-- Seleccione una opción --</option>
@@ -27,11 +27,13 @@
         <option value="energiaPotencial">Energía Potencial</option>
         <option value="leyOhm">Ley de Ohm</option>
       </select>
-    </section>
 
-    <section id="formularioOperacion"></section>
+      <div id="formularioOperacion"></div>
+      <div id="resultado"></div>
+    </section>
   </main>
 
   <script src="script.js"></script>
 </body>
 </html>
+
