@@ -1,105 +1,80 @@
 function mostrarFormulario() {
-  const seleccion = document.getElementById("selectorMagnitud").value;
+  const tipo = document.getElementById("selectorMagnitud").value;
   const contenedor = document.getElementById("formularioOperacion");
+  const resultado = document.getElementById("resultado");
+  resultado.innerHTML = "";
 
-  contenedor.innerHTML = ""; // Limpia el anterior
-
-  if (seleccion === "") return;
+  const crearCampo = (label, id) => `
+    <label for="${id}">${label}</label>
+    <input type="number" id="${id}" required>
+  `;
 
   let html = "";
 
-  switch (seleccion) {
+  switch (tipo) {
     case "velocidad":
-      html = `
-        <h3>Velocidad</h3>
-        <label>Distancia (m): <input id="distancia" type="number"></label>
-        <label>Tiempo (s): <input id="tiempo" type="number"></label>
-        <button onclick="calcularVelocidad()">Calcular</button>
-        <p id="resultado"></p>
-      `;
+      html = crearCampo("Distancia (m)", "distancia") +
+             crearCampo("Tiempo (s)", "tiempo") +
+             `<button onclick="calcularVelocidad()">Calcular</button>`;
       break;
+
     case "aceleracion":
-      html = `
-        <h3>Aceleración</h3>
-        <label>Velocidad Final (m/s): <input id="vf" type="number"></label>
-        <label>Velocidad Inicial (m/s): <input id="vi" type="number"></label>
-        <label>Tiempo (s): <input id="tiempoA" type="number"></label>
-        <button onclick="calcularAceleracion()">Calcular</button>
-        <p id="resultado"></p>
-      `;
+      html = crearCampo("Velocidad final (m/s)", "vf") +
+             crearCampo("Velocidad inicial (m/s)", "vi") +
+             crearCampo("Tiempo (s)", "tiempo") +
+             `<button onclick="calcularAceleracion()">Calcular</button>`;
       break;
+
     case "fuerza":
-      html = `
-        <h3>Fuerza</h3>
-        <label>Masa (kg): <input id="masaF" type="number"></label>
-        <label>Aceleración (m/s²): <input id="aceleracionF" type="number"></label>
-        <button onclick="calcularFuerza()">Calcular</button>
-        <p id="resultado"></p>
-      `;
+      html = crearCampo("Masa (kg)", "masa") +
+             crearCampo("Aceleración (m/s²)", "aceleracion") +
+             `<button onclick="calcularFuerza()">Calcular</button>`;
       break;
+
     case "trabajo":
-      html = `
-        <h3>Trabajo</h3>
-        <label>Fuerza (N): <input id="fuerzaT" type="number"></label>
-        <label>Distancia (m): <input id="distanciaT" type="number"></label>
-        <button onclick="calcularTrabajo()">Calcular</button>
-        <p id="resultado"></p>
-      `;
+      html = crearCampo("Fuerza (N)", "fuerza") +
+             crearCampo("Distancia (m)", "distancia") +
+             `<button onclick="calcularTrabajo()">Calcular</button>`;
       break;
+
     case "potencia":
-      html = `
-        <h3>Potencia</h3>
-        <label>Trabajo (J): <input id="trabajoP" type="number"></label>
-        <label>Tiempo (s): <input id="tiempoP" type="number"></label>
-        <button onclick="calcularPotencia()">Calcular</button>
-        <p id="resultado"></p>
-      `;
+      html = crearCampo("Trabajo (J)", "trabajo") +
+             crearCampo("Tiempo (s)", "tiempo") +
+             `<button onclick="calcularPotencia()">Calcular</button>`;
       break;
+
     case "presion":
-      html = `
-        <h3>Presión</h3>
-        <label>Fuerza (N): <input id="fuerzaPr" type="number"></label>
-        <label>Área (m²): <input id="areaPr" type="number"></label>
-        <button onclick="calcularPresion()">Calcular</button>
-        <p id="resultado"></p>
-      `;
+      html = crearCampo("Fuerza (N)", "fuerza") +
+             crearCampo("Área (m²)", "area") +
+             `<button onclick="calcularPresion()">Calcular</button>`;
       break;
+
     case "densidad":
-      html = `
-        <h3>Densidad</h3>
-        <label>Masa (kg): <input id="masaD" type="number"></label>
-        <label>Volumen (m³): <input id="volumenD" type="number"></label>
-        <button onclick="calcularDensidad()">Calcular</button>
-        <p id="resultado"></p>
-      `;
+      html = crearCampo("Masa (kg)", "masa") +
+             crearCampo("Volumen (m³)", "volumen") +
+             `<button onclick="calcularDensidad()">Calcular</button>`;
       break;
+
     case "energiaCinetica":
-      html = `
-        <h3>Energía Cinética</h3>
-        <label>Masa (kg): <input id="masaEc" type="number"></label>
-        <label>Velocidad (m/s): <input id="velocidadEc" type="number"></label>
-        <button onclick="calcularEnergiaCinetica()">Calcular</button>
-        <p id="resultado"></p>
-      `;
+      html = crearCampo("Masa (kg)", "masa") +
+             crearCampo("Velocidad (m/s)", "velocidad") +
+             `<button onclick="calcularEnergiaCinetica()">Calcular</button>`;
       break;
+
     case "energiaPotencial":
-      html = `
-        <h3>Energía Potencial</h3>
-        <label>Masa (kg): <input id="masaEp" type="number"></label>
-        <label>Altura (m): <input id="alturaEp" type="number"></label>
-        <button onclick="calcularEnergiaPotencial()">Calcular</button>
-        <p id="resultado"></p>
-      `;
+      html = crearCampo("Masa (kg)", "masa") +
+             crearCampo("Altura (m)", "altura") +
+             `<button onclick="calcularEnergiaPotencial()">Calcular</button>`;
       break;
+
     case "leyOhm":
-      html = `
-        <h3>Ley de Ohm</h3>
-        <label>Voltaje (V): <input id="voltaje" type="number"></label>
-        <label>Resistencia (Ω): <input id="resistencia" type="number"></label>
-        <button onclick="calcularOhm()">Calcular</button>
-        <p id="resultado"></p>
-      `;
+      html = crearCampo("Voltaje (V)", "voltaje") +
+             crearCampo("Resistencia (Ω)", "resistencia") +
+             `<button onclick="calcularCorriente()">Calcular</button>`;
       break;
+
+    default:
+      html = "";
   }
 
   contenedor.innerHTML = html;
@@ -107,72 +82,67 @@ function mostrarFormulario() {
 
 // Funciones de cálculo
 function calcularVelocidad() {
-  const d = parseFloat(document.getElementById("distancia").value);
-  const t = parseFloat(document.getElementById("tiempo").value);
-  mostrarResultado(d / t, "m/s");
+  const d = +document.getElementById("distancia").value;
+  const t = +document.getElementById("tiempo").value;
+  mostrarResultado("Velocidad", d / t, "m/s");
 }
 
 function calcularAceleracion() {
-  const vf = parseFloat(document.getElementById("vf").value);
-  const vi = parseFloat(document.getElementById("vi").value);
-  const t = parseFloat(document.getElementById("tiempoA").value);
-  mostrarResultado((vf - vi) / t, "m/s²");
+  const vf = +document.getElementById("vf").value;
+  const vi = +document.getElementById("vi").value;
+  const t = +document.getElementById("tiempo").value;
+  mostrarResultado("Aceleración", (vf - vi) / t, "m/s²");
 }
 
 function calcularFuerza() {
-  const m = parseFloat(document.getElementById("masaF").value);
-  const a = parseFloat(document.getElementById("aceleracionF").value);
-  mostrarResultado(m * a, "N");
+  const m = +document.getElementById("masa").value;
+  const a = +document.getElementById("aceleracion").value;
+  mostrarResultado("Fuerza", m * a, "N");
 }
 
 function calcularTrabajo() {
-  const f = parseFloat(document.getElementById("fuerzaT").value);
-  const d = parseFloat(document.getElementById("distanciaT").value);
-  mostrarResultado(f * d, "J");
+  const f = +document.getElementById("fuerza").value;
+  const d = +document.getElementById("distancia").value;
+  mostrarResultado("Trabajo", f * d, "J");
 }
 
 function calcularPotencia() {
-  const w = parseFloat(document.getElementById("trabajoP").value);
-  const t = parseFloat(document.getElementById("tiempoP").value);
-  mostrarResultado(w / t, "W");
+  const w = +document.getElementById("trabajo").value;
+  const t = +document.getElementById("tiempo").value;
+  mostrarResultado("Potencia", w / t, "W");
 }
 
 function calcularPresion() {
-  const f = parseFloat(document.getElementById("fuerzaPr").value);
-  const a = parseFloat(document.getElementById("areaPr").value);
-  mostrarResultado(f / a, "Pa");
+  const f = +document.getElementById("fuerza").value;
+  const a = +document.getElementById("area").value;
+  mostrarResultado("Presión", f / a, "Pa");
 }
 
 function calcularDensidad() {
-  const m = parseFloat(document.getElementById("masaD").value);
-  const v = parseFloat(document.getElementById("volumenD").value);
-  mostrarResultado(m / v, "kg/m³");
+  const m = +document.getElementById("masa").value;
+  const v = +document.getElementById("volumen").value;
+  mostrarResultado("Densidad", m / v, "kg/m³");
 }
 
 function calcularEnergiaCinetica() {
-  const m = parseFloat(document.getElementById("masaEc").value);
-  const v = parseFloat(document.getElementById("velocidadEc").value);
-  mostrarResultado(0.5 * m * v * v, "J");
+  const m = +document.getElementById("masa").value;
+  const v = +document.getElementById("velocidad").value;
+  mostrarResultado("Energía Cinética", 0.5 * m * v * v, "J");
 }
 
 function calcularEnergiaPotencial() {
-  const m = parseFloat(document.getElementById("masaEp").value);
-  const h = parseFloat(document.getElementById("alturaEp").value);
+  const m = +document.getElementById("masa").value;
+  const h = +document.getElementById("altura").value;
   const g = 9.8;
-  mostrarResultado(m * g * h, "J");
+  mostrarResultado("Energía Potencial", m * g * h, "J");
 }
 
-function calcularOhm() {
-  const v = parseFloat(document.getElementById("voltaje").value);
-  const r = parseFloat(document.getElementById("resistencia").value);
-  mostrarResultado(v / r, "A");
+function calcularCorriente() {
+  const v = +document.getElementById("voltaje").value;
+  const r = +document.getElementById("resistencia").value;
+  mostrarResultado("Corriente", v / r, "A");
 }
 
-function mostrarResultado(valor, unidad) {
-  const resultado = document.getElementById("resultado");
-  if (isNaN(valor) || !isFinite(valor)) {
-    resultado.textContent = "Por favor, ingrese valores válidos.";
-  } else {
-    resultado.textContent = Resultado: ${valor.toFixed(2)} ${unidad};
-  }
+function mostrarResultado(etiqueta, valor, unidad) {
+  document.getElementById("resultado").innerHTML = `${etiqueta}: ${valor.toFixed(2)} ${unidad}`;
 }
