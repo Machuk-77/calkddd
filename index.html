@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Calculadora de Magnitudes Físicas</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Calculadora de Magnitudes Físicas</h1>
+    <p>Elaborada por Mateo Machuca Gomez</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Seleccione qué magnitud física desea calcular</h2>
+      <select id="selectorMagnitud" onchange="mostrarFormulario()">
+        <option value="">-- Seleccione una opción --</option>
+        <option value="velocidad">Velocidad</option>
+        <option value="aceleracion">Aceleración</option>
+        <option value="fuerza">Fuerza</option>
+        <option value="trabajo">Trabajo</option>
+        <option value="potencia">Potencia</option>
+        <option value="presion">Presión</option>
+        <option value="densidad">Densidad</option>
+        <option value="energiaCinetica">Energía Cinética</option>
+        <option value="energiaPotencial">Energía Potencial</option>
+        <option value="leyOhm">Ley de Ohm</option>
+      </select>
+    </section>
+
+    <section id="formularioOperacion"></section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
